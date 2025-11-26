@@ -34,6 +34,39 @@ async function ensureSDK() {
   return SelfSDK;
 }
 
+async function verifyViaRest(address: `0x${string}`): Promise<VerificationResult> {
+  const url = process.env.NEXT_PUBLIC_SELF_VERIFY_URL;
+  if (!url) {
+    return { verified: false };
+  }
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address }),
+    });
+
+    if (!res.ok) {
+      return { verified: false };
+    }
+
+    const data = (await res.json()) as {
+      isVerified?: boolean;
+      reputationScore?: number;
+      credentials?: unknown;
+    };
+
+    return {
+      verified: Boolean(data?.isVerified),
+      reputation: data?.reputationScore,
+      credentials: data?.credentials,
+    };
+  } catch (e) {
+    return { verified: false };
+  }
+}
+
 export async function verifyIdentity(
   address: `0x${string}`,
 ): Promise<VerificationResult> {
@@ -41,8 +74,8 @@ export async function verifyIdentity(
   const apiKey = process.env.NEXT_PUBLIC_SELF_API_KEY;
 
   if (!sdkClass || !apiKey) {
-    console.warn("Self Protocol SDK or API Key missing");
-    return { verified: false };
+    console.warn("Self Protocol SDK or API Key missing; attempting REST fallback");
+    return verifyViaRest(address);
   }
 
   const sdk = new sdkClass({
