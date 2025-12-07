@@ -1,4 +1,7 @@
-type VerificationResult = {
+import { env } from "./env";
+import { mockIdentity } from "./mocks";
+
+export type VerificationResult = {
   verified: boolean;
   reputation?: number;
   credentials?: unknown;
@@ -35,7 +38,7 @@ async function ensureSDK() {
 }
 
 async function verifyViaRest(address: `0x${string}`): Promise<VerificationResult> {
-  const url = process.env.NEXT_PUBLIC_SELF_VERIFY_URL;
+  const url = env.selfVerifyUrl;
   if (!url) {
     return { verified: false };
   }
@@ -70,8 +73,12 @@ async function verifyViaRest(address: `0x${string}`): Promise<VerificationResult
 export async function verifyIdentity(
   address: `0x${string}`,
 ): Promise<VerificationResult> {
+  if (env.useMocks) {
+    return mockIdentity;
+  }
+
   const sdkClass = await ensureSDK();
-  const apiKey = process.env.NEXT_PUBLIC_SELF_API_KEY;
+  const apiKey = env.selfApiKey;
 
   if (!sdkClass || !apiKey) {
     console.warn("Self Protocol SDK or API Key missing; attempting REST fallback");
