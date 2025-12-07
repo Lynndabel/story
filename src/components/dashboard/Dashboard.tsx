@@ -93,9 +93,10 @@ export function Dashboard() {
       </header>
 
       {error && (
-        <p className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
-          {error}
-        </p>
+        <div className="glass-panel border border-red-500/40 bg-red-500/10 p-4 text-sm text-red-100 flex items-start gap-3">
+          <span className="mt-0.5 h-2 w-2 rounded-full bg-red-400 shadow-[0_0_12px_rgba(248,113,113,0.8)]" />
+          <p className="flex-1 leading-relaxed">{error}</p>
+        </div>
       )}
 
       {loading && (
