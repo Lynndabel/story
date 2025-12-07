@@ -4,18 +4,21 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export function ConnectPanel() {
   return (
-    <div className="glass-panel p-6 sm:p-8 flex flex-col gap-4">
-      <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+    <div className="glass-panel flex flex-col gap-4 p-6 sm:p-8 border border-white/10 relative overflow-hidden transition-transform duration-200 hover:-translate-y-0.5">
+      <div className="pointer-events-none absolute inset-px rounded-[1.4rem] bg-gradient-to-br from-primary/25 via-transparent to-accent/25 opacity-40" />
+      <div className="relative space-y-3">
+        <p className="text-sm uppercase tracking-[0.3em] text-white/60">
         Start with your wallet
-      </p>
-      <h3 className="text-2xl font-semibold">
-        Connect Valora, MetaMask, or WalletConnect
-      </h3>
-      <p className="text-white/70">
-        Securely authenticate with Self Protocol and unlock NoahAI-powered
-        insights tailored to your Celo activity.
-      </p>
-      <div className="mt-2">
+        </p>
+        <h3 className="text-2xl font-semibold">
+          Connect Valora, MetaMask, or WalletConnect
+        </h3>
+        <p className="text-white/70">
+          Securely authenticate with Self Protocol and unlock NoahAI-powered
+          insights tailored to your Celo activity.
+        </p>
+      </div>
+      <div className="relative mt-4">
         <ConnectButton
           accountStatus={{ smallScreen: "avatar", largeScreen: "full" }}
           chainStatus="icon"
