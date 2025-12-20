@@ -61,24 +61,24 @@ function generateInsights(
   };
 }
 
-function calculateAverage(txs: ChainTransaction[]) {
+export function calculateAverage(txs: ChainTransaction[]) {
   if (!txs.length) return 0;
   return txs.reduce((sum, tx) => sum + tx.value, 0) / txs.length;
 }
 
-function calculateTotalSpent(txs: ChainTransaction[]) {
+export function calculateTotalSpent(txs: ChainTransaction[]) {
   return txs
     .filter((tx) => tx.isOutgoing)
     .reduce((sum, tx) => sum + tx.value, 0);
 }
 
-function calculateTotalReceived(txs: ChainTransaction[]) {
+export function calculateTotalReceived(txs: ChainTransaction[]) {
   return txs
     .filter((tx) => !tx.isOutgoing)
     .reduce((sum, tx) => sum + tx.value, 0);
 }
 
-function findMostActiveDay(txs: ChainTransaction[]) {
+export function findMostActiveDay(txs: ChainTransaction[]) {
   const days = new Map<string, number>();
 
   txs.forEach((tx) => {
