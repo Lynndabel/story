@@ -25,13 +25,13 @@ export type AdviceResponse = {
 };
 
 const BASE_URL = "https://api.noahai.com";
-const API_KEY = process.env.NEXT_PUBLIC_NOAHAI_API_KEY;
 
 async function request<TResponse>({
   path,
   payload,
   parse,
 }: NoahAIRequest<TResponse>): Promise<TResponse> {
+  const API_KEY = process.env.NEXT_PUBLIC_NOAHAI_API_KEY;
   if (!API_KEY) {
     throw new Error("NEXT_PUBLIC_NOAHAI_API_KEY missing");
   }
