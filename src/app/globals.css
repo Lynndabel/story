@@ -22,6 +22,10 @@ body {
       transparent 35%
     ),
     linear-gradient(145deg, #020202, #0b0b0b 55%, #050505);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  scroll-behavior: smooth;
 }
 
 .glass-panel {
@@ -44,4 +48,24 @@ body {
       transparent 1px
     );
   background-size: 32px 32px;
+}
+
+.page-shell {
+  position: relative;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  min-height: 100vh;
+  padding-inline: 1.5rem;
+  padding-block: 3rem;
+}
+
+.page-fade-top {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: 96px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #050505, transparent);
+  z-index: 10;
 }

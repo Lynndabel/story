@@ -12,7 +12,7 @@ export type ChainTransaction = {
   token: string;
 };
 
-const client = createPublicClient({
+export const client = createPublicClient({
   chain: celo,
   transport: http(),
 });
@@ -59,8 +59,9 @@ export async function getTransactionHistory(
   }
 }
 
-export async function getTokenBalances(address: `0x${string}`) {
-  const celoBalance = await client.getBalance({ address });
+export async function getTokenBalances(address: `0x${string}`, injectedClient?: any) {
+  const usedClient = injectedClient ?? client;
+  const celoBalance = await usedClient.getBalance({ address });
 
   const cUSD_ADDRESS = "0x765DE816845861e75A25fCA122bb6898B8B1282a";
   const cUSD_ABI = [
@@ -73,7 +74,7 @@ export async function getTokenBalances(address: `0x${string}`) {
     },
   ] as const;
 
-  const cUsdBalance = await client.readContract({
+  const cUsdBalance = await usedClient.readContract({
     address: cUSD_ADDRESS,
     abi: cUSD_ABI,
     functionName: "balanceOf",
