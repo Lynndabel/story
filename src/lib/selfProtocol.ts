@@ -72,12 +72,13 @@ async function verifyViaRest(address: `0x${string}`): Promise<VerificationResult
 
 export async function verifyIdentity(
   address: `0x${string}`,
+  injectedSDK?: any
 ): Promise<VerificationResult> {
   if (env.useMocks) {
     return mockIdentity;
   }
 
-  const sdkClass = await ensureSDK();
+  const sdkClass = injectedSDK ?? (await ensureSDK());
   const apiKey = env.selfApiKey;
 
   if (!sdkClass || !apiKey) {
