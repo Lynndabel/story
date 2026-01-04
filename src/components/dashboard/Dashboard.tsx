@@ -88,7 +88,7 @@ export function Dashboard() {
         </h1>
         <p className="max-w-2xl text-white/70">
           Identity verified, balances synced, and AI ready to recommend the next
-          best financial moves tailored to your Celo wallet.
+          best financial moves tailored to your Base wallet.
         </p>
       </header>
 
