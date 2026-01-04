@@ -14,7 +14,7 @@ export function ConnectPanel() {
           Connect Valora, MetaMask, or WalletConnect
         </h3>
         <p className="text-white/70">
-          Securely authenticate with Self Protocol and unlock NoahAI-powered
+          Securely authenticate with Self Protocol
           insights tailored to your Celo activity.
         </p>
       </div>
