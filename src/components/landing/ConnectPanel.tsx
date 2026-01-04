@@ -4,7 +4,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export function ConnectPanel() {
   return (
-    <div className="glass-panel flex flex-col gap-4 p-6 sm:p-8 border border-white/10 relative overflow-hidden transition-transform duration-200 hover:-translate-y-0.5">
+    <div className="glass-panel flex flex-col gap-6 p-8 sm:p-10 border border-white/10 relative overflow-hidden transition-transform duration-200 hover:-translate-y-0.5">
       <div className="pointer-events-none absolute inset-px rounded-[1.4rem] bg-gradient-to-br from-primary/25 via-transparent to-accent/25 opacity-40" />
       <div className="relative space-y-3">
         <p className="text-sm uppercase tracking-[0.3em] text-white/60">
