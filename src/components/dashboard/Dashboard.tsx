@@ -111,7 +111,7 @@ export function Dashboard() {
 
       {data && (
         <section className="glass-panel p-6">
-          <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+          <p className="text-sm uppercase tracking-[0.5em] text-white/60">
             Balances
           </p>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
